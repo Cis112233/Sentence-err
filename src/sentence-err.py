@@ -13,7 +13,7 @@ def getLineList(file):
 
     for ln in open(file, "r"):
         if ln != "":
-            retData.append(ln)
+            retData.append(ln.replace("\n", ""))
 
     return retData
 
@@ -34,22 +34,48 @@ def generateSentence(data, template):
     sentence = template
 
     # Step A: Pick some nouns
-    randNouns = pickNRandom(len(re.findall("\<noun\>", template)), data["nouns"])
+    numNouns = len(re.findall("\<noun\>", template))
+    randNouns = pickNRandom(numNouns, data["nouns"])
 
     # Step B: Pick some verbs
-    randVerbs = pickNRandom(len(re.findall("\<verb\>", template)), data["verbs"])
+    numVerbs  = len(re.findall("\<verb\>", template))
+    randVerbs = pickNRandom(numVerbs, data["verbs"])
 
     # Step C: Pick some adjectives
-    randAdject = pickNRandom(len(re.findall("\<adjective\>", template)), data["adjectives"])
+    numAdject  = len(re.findall("\<adjective\>", template))
+    randAdject = pickNRandom(numAdject, data["adjectives"])
 
     # Step D: Pick some adverbs
-    randAdverb = pickNRandom(len(re.findall("\<adverb\>", template)), data["adverbs"])
+    numAdverb  = len(re.findall("\<adverb\>", template))
+    randAdverb = pickNRandom(numAdverb, data["adverbs"])
 
     # Step E: Pick some prepositions
-    randPreps = pickNRandom(len(re.findall("\<prepositions\>", template)), data["prepositions"])
+    numPreps  = len(re.findall("\<preposition\>", template))
+    randPreps = pickNRandom(numPreps, data["prepositions"])
 
     # Step F: Generate a sentence
-    ## TODO (Gigabyte Giant): ...
+    ## Step F1: Replace nouns
+    for i in range(0, numNouns):
+        sentence = sentence.replace("<noun>", pickRandom(randNouns), 1)
+
+    ## Step F2: Replace verbs
+    for i in range(0, numVerbs):
+        sentence = sentence.replace("<verb>", pickRandom(randVerbs), 1)
+
+    ## Step F3: Replace adjectives
+    for i in range(0, numAdject):
+        sentence = sentence.replace("<adjective>", pickRandom(randAdject), 1)
+
+    ## Step F4: Replace adverbs
+    for i in range(0, numAdverb):
+        sentence = sentence.replace("<adverb>", pickRandom(randAdverb), 1)
+
+    ## Step F5: Replace prepositions
+    for i in range(0, numPreps):
+        sentence = sentence.replace("<preposition>", pickRandom(randPreps), 1)
+
+    # Step G: Return the new sentence
+    return sentence
 
 def main(argc, argv):
     if argc < 2:
