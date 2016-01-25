@@ -1,1 +1,4 @@
-The <adjective> <noun> <past-tense-verb> <adverb> the <noun>.
+The <adjective> <noun> <verb> <adverb> the <noun>.
+The <adjective> <adjective> <noun> <verb> <preposition> the <adjective> <noun>.
+<adjective> <noun>!
+<verb> <preposition> <adverb>!
