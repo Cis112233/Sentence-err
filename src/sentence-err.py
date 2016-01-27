@@ -53,8 +53,8 @@ def generateSentence(data, template):
     numPreps  = len(re.findall("\<preposition\>", template))
     randPreps = pickNRandom(numPreps, data["prepositions"])
     # Step F: Pick some conjunctions
-    numConj = len(re.findall("\<conjunctions\>", template))
-    randConj = pickNRandom(numConj, data["conjuntions"])
+    numConj = len(re.findall("\<conjunction\>", template))
+    randConj = pickNRandom(numConj, data["conjuntion"])
     ##TODO (Christopher): Finish adding all other word forms
     # Step G: Generate a sentence
     ## Step G1: Replace nouns
@@ -78,7 +78,7 @@ def generateSentence(data, template):
         sentence = sentence.replace("<preposition>", pickRandom(randPreps), 1)
     ## Step G6: Replace conjunctions
     for i in range(0, numConj):
-        sentence = sentence.replace("<conjunctions>", pickRandom(randPreps), 1
+        sentence = sentence.replace("<conjunction>", pickRandom(randPreps), 1
     # Step G: Return the new sentence
     return sentence
 
