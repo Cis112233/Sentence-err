@@ -55,7 +55,7 @@ def generateSentence(data, template):
     # Step F: Pick some conjunctions
     numConj = len(re.findall("\<conjunction\>", template))
     randConj = pickNRandom(numConj, data["conjuntion"])
-    ##TODO (Christopher): Finish adding all other word forms
+    # TODO (Christopher): Finish adding all other word forms
     # Step G: Generate a sentence
     ## Step G1: Replace nouns
     for i in range(0, numNouns):
