@@ -52,33 +52,28 @@ def generateSentence(data, template):
     # Step E: Pick some prepositions
     numPreps  = len(re.findall("\<preposition\>", template))
     randPreps = pickNRandom(numPreps, data["prepositions"])
-    # Step F: Pick some conjunctions
-    numConj = len(re.findall("\<conjunction\>", template))
-    randConj = pickNRandom(numConj, data["conjuntion"])
-    # TODO (Christopher): Finish adding all other word forms
-    # Step G: Generate a sentence
-    ## Step G1: Replace nouns
+
+    # Step F: Generate a sentence
+    ## Step F1: Replace nouns
     for i in range(0, numNouns):
         sentence = sentence.replace("<noun>", pickRandom(randNouns), 1)
 
-    ## Step G2: Replace verbs
+    ## Step F2: Replace verbs
     for i in range(0, numVerbs):
         sentence = sentence.replace("<verb>", pickRandom(randVerbs), 1)
 
-    ## Step G3: Replace adjectives
+    ## Step F3: Replace adjectives
     for i in range(0, numAdject):
         sentence = sentence.replace("<adjective>", pickRandom(randAdject), 1)
 
-    ## Step G4: Replace adverbs
+    ## Step F4: Replace adverbs
     for i in range(0, numAdverb):
         sentence = sentence.replace("<adverb>", pickRandom(randAdverb), 1)
 
-    ## Step G5: Replace prepositions
+    ## Step F5: Replace prepositions
     for i in range(0, numPreps):
         sentence = sentence.replace("<preposition>", pickRandom(randPreps), 1)
-    ## Step G6: Replace conjunctions
-    for i in range(0, numConj):
-        sentence = sentence.replace("<conjunction>", pickRandom(randPreps), 1
+
     # Step G: Return the new sentence
     return sentence
 
