@@ -32,7 +32,7 @@ def pickNRandom(n, data):
 
 def generateSentence(data, template):
     sentence = template
-
+#conjunctions
     # Step A: Pick some nouns
     numNouns = len(re.findall("\<noun\>", template))
     randNouns = pickNRandom(numNouns, data["nouns"])
@@ -52,29 +52,37 @@ def generateSentence(data, template):
     # Step E: Pick some prepositions
     numPreps  = len(re.findall("\<preposition\>", template))
     randPreps = pickNRandom(numPreps, data["prepositions"])
-
-    # Step F: Generate a sentence
-    ## Step F1: Replace nouns
+    
+    # Step F: Pick some conjunctions
+    numConjs  = len(re.findall("\<conjunction\>", template))
+    randConjs = pickNRandom(numConjs, data["conjunctions"])
+    
+    # TODO (Christopher): Finish adding all other word forms
+    
+    # Step G: Generate a sentence
+    ## Step G1: Replace nouns
     for i in range(0, numNouns):
         sentence = sentence.replace("<noun>", pickRandom(randNouns), 1)
 
-    ## Step F2: Replace verbs
+    ## Step G2: Replace verbs
     for i in range(0, numVerbs):
         sentence = sentence.replace("<verb>", pickRandom(randVerbs), 1)
 
-    ## Step F3: Replace adjectives
+    ## Step G3: Replace adjectives
     for i in range(0, numAdject):
         sentence = sentence.replace("<adjective>", pickRandom(randAdject), 1)
 
-    ## Step F4: Replace adverbs
+    ## Step G4: Replace adverbs
     for i in range(0, numAdverb):
         sentence = sentence.replace("<adverb>", pickRandom(randAdverb), 1)
 
-    ## Step F5: Replace prepositions
+    ## Step G5: Replace prepositions
     for i in range(0, numPreps):
         sentence = sentence.replace("<preposition>", pickRandom(randPreps), 1)
+    ## Step G6: Replace conjunctions
+    for i in range(0, numConjs):
+        sentence = sentence.replace("<conjunction>", pickRandom(randConjs), 1)
 
-    # Step G: Return the new sentence
     return sentence
 
 def main(argc, argv):
@@ -93,7 +101,8 @@ def main(argc, argv):
             "verbs"       : DATA_DIR_PATH + "/verbs.txt",
             "adjectives"  : DATA_DIR_PATH + "/adjectives.txt",
             "adverbs"     : DATA_DIR_PATH + "/adverbs.txt",
-            "prepositions": DATA_DIR_PATH + "/prepositions.txt"
+            "prepositions": DATA_DIR_PATH + "/prepositions.txt",
+            "conjunctions": DATA_DIR_PATH + "/conjunctions.txt"            
         }
 
         # TODO (Gigabyte Giant): Stop relying on the above dict
@@ -103,7 +112,8 @@ def main(argc, argv):
             "verbs"       : getLineList(DATA_PATHS["verbs"]),
             "adjectives"  : getLineList(DATA_PATHS["adjectives"]),
             "adverbs"     : getLineList(DATA_PATHS["adverbs"]),
-            "prepositions": getLineList(DATA_PATHS["prepositions"])
+            "prepositions": getLineList(DATA_PATHS["prepositions"]),
+            "conjunctions": getLineList(DATA_PATHS["conjunctions"])            
         }
 
         # Step 1: Pick a random sentence template
@@ -118,3 +128,4 @@ def main(argc, argv):
     return 0
 
 main(len(sys.argv), sys.argv)
+
