@@ -1,5 +1,5 @@
 The <adjective> <noun> <verb> <adverb> the <noun>.
-The <adjective> <adjective> <noun> <verb> <conjunction> <adjective> <noun>.
+The <adjective> <adjective> <noun> <verb> <noun> <adjective> <noun>.
 <adjective> <noun>!
 <verb> <adverb>!
-<verp> <conjunction> their!
+<verb> <noun> their!
